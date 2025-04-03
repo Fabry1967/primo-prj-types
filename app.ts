@@ -154,10 +154,10 @@ function d(x: number | null): number {
 console.log("d:", d(x));
 
 //type assertion
-let userInput = document.getElementById("user-Input") as HTMLInputElement;
-if (userInput) {
-  userInput.min = "2";
-}
+// let userInput = document.getElementById("user-Input") as HTMLInputElement;
+// if (userInput) {
+//   userInput.min = "2";
+// }
 
 interface User {
   name: string;
@@ -173,3 +173,41 @@ function saluta4(nome: string, cognome?: string): string {
 }
 console.log(saluta4("Mario"));
 saluta4("Mario", "Rossi");
+
+// overloading
+function somma2(a: number, b: number): number;
+function somma2(a: string, b: string): string;
+function somma2(a: any, b: any): any {
+  return a + b;
+}
+console.log(somma2(1, 2));
+console.log(somma2("1", "2"));
+
+//This nelle funzioni
+class Counter {
+  count: number = 0;
+  increment(this: Counter) {
+    this.count++; // sarebbe come un count=count+1
+    //console.log(this.count);
+  }
+}
+let counter = new Counter();
+console.log(counter.count); // 0
+counter.increment(); // 1
+console.log(counter.count); //
+
+// assegna una funzione ad una variabile
+let miaFunzione: (a: number, b: string) => boolean;
+
+miaFunzione = (numero, stringa) => {
+  return numero > 5 && stringa.startsWith("c");
+};
+miaFunzione(10, "ciaolll");
+console.log(miaFunzione(10, "ciao"));
+
+//parametro rest
+function somma3(capo: string, ...numeri: string[]): string {
+  return capo + numeri.join(", ");
+}
+let somma99 = somma3("ciao", "pippo", "pluto", "topolino", "paperino");
+console.log(somma99);

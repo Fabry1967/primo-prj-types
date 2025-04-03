@@ -7,20 +7,20 @@ console.log(somma(1, 2));
 console.log(somma(3, 2));
 console.log(somma(1, 2));
 console.log(somma(1, 2));
-var isCompleted;
+let isCompleted;
 isCompleted = true;
 console.log("è stato completato:", isCompleted);
-var decimal = 10;
-var hex = 0xf;
-var binary = 4;
+let decimal = 10;
+let hex = 0xf;
+let binary = 0b100;
 console.log("kjkjkjk:", binary);
-var color = "bianco";
-var cosa = "manuel";
-var pippo = "ciao mi chiamo " + cosa + " e sono di colore " + color;
+let color = "bianco";
+let cosa = "manuel";
+let pippo = "ciao mi chiamo " + cosa + " e sono di colore " + color;
 console.log("jjjjj ${pippo}");
-var pippo2 = ["ciao mi chiamo ", "kk", "ooooo"];
+let pippo2 = ["ciao mi chiamo ", "kk", "ooooo"];
 console.table(pippo2.join(", "));
-var devices = [
+let devices = [
     {
         name: "iPhone",
         brand: "Apple",
@@ -32,7 +32,7 @@ var devices = [
 ];
 console.table(devices);
 //tuple
-var persona = ["Mario", 30];
+let persona = ["Mario", 30];
 console.log("Nome:", persona[0]);
 console.log("Età:", persona[1]);
 //enum
@@ -42,27 +42,27 @@ var Colore;
     Colore[Colore["nero"] = 1] = "nero";
     Colore[Colore["blu"] = 2] = "blu";
 })(Colore || (Colore = {}));
-var colorePreferito = Colore.bianco;
+let colorePreferito = Colore.bianco;
 console.log("Colore preferito:", colorePreferito);
 console.log("Colore preferito:", Colore[0]);
 console.log("Colore preferito:", Colore[1]);
 console.log("Colore preferito:", Colore[2]);
 //Any
-var valorecasuale = 100;
-var dd = ["ciao", "pippo", "pluto"];
+let valorecasuale = 100;
+let dd = ["ciao", "pippo", "pluto"];
 valorecasuale = dd[0];
 console.log("valorecasuale:", valorecasuale);
 //void
 function saluta(nome, cognome) {
-    console.log("Ciao ".concat(nome, " ").concat(cognome));
+    console.log(`Ciao ${nome} ${cognome}`);
 }
 saluta("hhh", "jjj");
 //null e undefined
-var u = null;
-var v = undefined;
+let u = null;
+let v = undefined;
 console.log("u:", u);
 console.log("v:", v);
-var misto = "ciao";
+let misto = "ciao";
 misto = 100;
 console.log("misto:", misto);
 misto = null;
@@ -70,8 +70,8 @@ console.log("misto:", misto);
 misto = "jj";
 console.log("misto:", misto);
 //type aliasies
-var plyt;
-var employee1 = {
+let plyt;
+let employee1 = {
     nome: "Mario",
     cognome: "Rossi",
     etax: 30,
@@ -80,7 +80,7 @@ var employee1 = {
 };
 plyt = employee1;
 console.log("plyt:", plyt);
-var clickevent = "click";
+let clickevent = "click";
 //type guard
 function isnumber(value) {
     return typeof value === "number";
@@ -97,22 +97,16 @@ if (isString("ciao")) {
 else {
     console.log("è un numero", isnumber(100));
 }
-var Uccello = /** @class */ (function () {
-    function Uccello() {
-    }
-    Uccello.prototype.vola = function () {
+class Uccello {
+    vola() {
         console.log("vola");
-    };
-    return Uccello;
-}());
-var Pesce = /** @class */ (function () {
-    function Pesce() {
     }
-    Pesce.prototype.nuota = function () {
+}
+class Pesce {
+    nuota() {
         console.log("nuota");
-    };
-    return Pesce;
-}());
+    }
+}
 function muoviAnimale(animale) {
     if (animale instanceof Uccello) {
         animale.vola();
@@ -122,7 +116,7 @@ function muoviAnimale(animale) {
     }
 }
 //nullable e undefined
-var x = 6;
+let x = 6;
 function d(x) {
     if (x === null) {
         return 0;
@@ -132,17 +126,42 @@ function d(x) {
     }
 }
 console.log("d:", d(x));
-//type assertion
-var userInput = document.getElementById("user-Input");
-if (userInput) {
-    userInput.min = "2";
-}
-//let pippo3 = getUserData() as User;
-//pippo3.cognome = "Rossi";
-//generics da vedere poi
-//FUNZIONI+++++++++++++++
+// generics da vedere poi
+// FUNZIONI+++++++++++++++
 function saluta4(nome, cognome) {
-    return "Ciao ".concat(nome, " ").concat(cognome);
+    return `Ciao ${nome} ${cognome}`;
 }
 console.log(saluta4("Mario"));
 saluta4("Mario", "Rossi");
+function somma2(a, b) {
+    return a + b;
+}
+console.log(somma2(1, 2));
+console.log(somma2("1", "2"));
+//This nelle funzioni
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    increment() {
+        this.count++; // sarebbe come un count=count+1
+        //console.log(this.count);
+    }
+}
+let counter = new Counter();
+console.log(counter.count); // 0
+counter.increment(); // 1
+console.log(counter.count); //
+// assegna una funzione ad una variabile
+let miaFunzione;
+miaFunzione = (numero, stringa) => {
+    return numero > 5 && stringa.startsWith("c");
+};
+miaFunzione(10, "ciaolll");
+console.log(miaFunzione(10, "ciao"));
+//parametro rest
+function somma3(capo, ...numeri) {
+    return capo + numeri.join(", ");
+}
+let somma99 = somma3("ciao", "pippo", "pluto", "topolino", "paperino");
+console.log(somma99);
