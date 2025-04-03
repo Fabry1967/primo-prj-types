@@ -1,213 +1,89 @@
-function somma(uu: number, b: number) {
-  return uu + b;
-}
-console.log(somma(1, 2));
-console.log(somma(1, 2));
-console.log(somma(1, 2));
-console.log(somma(3, 2));
-console.log(somma(1, 2));
-console.log(somma(1, 2));
+class Auto {
+  marca = "Ford";
+  modelo = "Mustang";
 
-let isCompleted: boolean;
-isCompleted = true;
-console.log("è stato completato:", isCompleted);
+  constructor(marca: string, modello: string) {
+    this.marca = marca;
+    this.modelo = modello;
+  }
 
-let decimal: number = 10;
-
-let hex: number = 0xf;
-
-let binary: number = 0b100;
-
-console.log("kjkjkjk:", binary);
-let color: string = "bianco";
-let cosa: string = "manuel";
-let pippo: string = "ciao mi chiamo " + cosa + " e sono di colore " + color;
-console.log("jjjjj ${pippo}");
-
-let pippo2: string[] = ["ciao mi chiamo ", "kk", "ooooo"];
-console.table(pippo2.join(", "));
-let devices = [
-  {
-    name: "iPhone",
-    brand: "Apple",
-  },
-  {
-    name: "Galaxy",
-    brand: "Samsung",
-  },
-];
-
-console.table(devices);
-//tuple
-let persona: [string, number] = ["Mario", 30];
-console.log("Nome:", persona[0]);
-console.log("Età:", persona[1]);
-
-//enum
-enum Colore {
-  bianco,
-  nero,
-  blu,
-}
-let colorePreferito: Colore = Colore.bianco;
-console.log("Colore preferito:", colorePreferito);
-console.log("Colore preferito:", Colore[0]);
-console.log("Colore preferito:", Colore[1]);
-console.log("Colore preferito:", Colore[2]);
-
-//Any
-let valorecasuale: any = 100;
-let dd: string[] = ["ciao", "pippo", "pluto"];
-valorecasuale = dd[0];
-console.log("valorecasuale:", valorecasuale);
-
-//void
-function saluta(nome: string, cognome: string): void {
-  console.log(`Ciao ${nome} ${cognome}`);
-}
-saluta("hhh", "jjj");
-
-//null e undefined
-let u: null = null;
-let v: undefined = undefined;
-console.log("u:", u);
-console.log("v:", v);
-
-let misto: string | number | null | undefined = "ciao";
-misto = 100;
-console.log("misto:", misto);
-misto = null;
-console.log("misto:", misto);
-misto = "jj";
-console.log("misto:", misto);
-
-interface Persona {
-  nome: string;
-  cognome?: string;
-  etax?: number;
-}
-interface Cosa {
-  id: number;
-  nome2: string;
-}
-
-type pippo = Persona & Cosa;
-//type aliasies
-let plyt: pippo;
-let employee1: pippo = {
-  nome: "Mario",
-  cognome: "Rossi",
-  etax: 30,
-  id: 1,
-  nome2: "Mario",
-};
-plyt = employee1;
-console.log("plyt:", plyt);
-
-//type literal
-type ClickEvent = "click" | "dblclick" | "mouseover";
-let clickevent: ClickEvent = "click";
-
-//type guard
-function isnumber(value: any): value is number {
-  return typeof value === "number";
-}
-if (isnumber(100)) {
-  console.log("è un numero");
-}
-function isString(value: any): value is string {
-  return typeof value === "string";
-}
-if (isString("ciao")) {
-  console.log("è una stringa");
-} else {
-  console.log("è un numero", isnumber(100));
-}
-
-class Uccello {
-  vola() {
-    console.log("vola");
+  mostradettagliAuto(): void {
+    console.log(`Marca: ${this.marca}, Modello: ${auto.modelo}`);
   }
 }
-class Pesce {
-  nuota() {
-    console.log("nuota");
-  }
-}
-function muoviAnimale(animale: Uccello | Pesce) {
-  if (animale instanceof Uccello) {
-    animale.vola();
-  } else {
-    animale.nuota();
-  }
-}
-//nullable e undefined
-let x: null | number = 6;
 
-function d(x: number | null): number {
-  if (x === null) {
-    return 0;
-  } else {
-    return x * 2;
-  }
-}
-console.log("d:", d(x));
+const auto = new Auto("fiat", "punto");
+//auto.costruttore("pip", "kk");
+auto.mostradettagliAuto();
+console.log(auto.marca); // Fiat
 
-//type assertion
-// let userInput = document.getElementById("user-Input") as HTMLInputElement;
-// if (userInput) {
-//   userInput.min = "2";
+// //Access modifier
+// class Animale {
+//   private nome: string;
+
+//   constructor(nome: string) {
+//     this.nome = nome;
+//   }
 // }
+// class Gatto extends Animale {
+//   constructor() {
+//     super("Gatto"); //prende il costruttore della classe padre
+//   }
+//   get nome() {
+//     // getter per accedere al nome del gatto}
+//     return "il gatto si chiama " + super.nome; // getter per accedere al nome del gatto
+//   }
+// }
+// let animale = new Animale("Cane");
+// let gatto = new Gatto();
 
-interface User {
-  name: string;
-  cognome: string;
-}
+// // console.log(gatto.nome); // da errore perche nome è privato
+// // console.log(animale.nome); // da errore perche nome è privato
 
-// generics da vedere poi
+// // SE INVECE FACCIO QUESTO....
+// //Access modifier
+// class Animale2 {
+//   private xnome: string;
 
-// FUNZIONI+++++++++++++++
+//   constructor(nome: string) {
+//     this.xnome = nome;
+//   }
+//   get nome() {
+//     return this.xnome;
+//   }
+// }
+// class Gatto2 extends Animale2 {
+//   constructor() {
+//     super("Gatto2"); //prende il costruttore della classe padre
+//   }
+//   get nome() {
+//     // getter per accedere al nome del gatto}
+//     return "il gatto si chiama " + super.nome; // getter per accedere al nome del gatto
+//   }
+// }
+// let animale4 = new Animale2("Cane");
+// let gatto4 = new Gatto2();
 
-function saluta4(nome: string, cognome?: string): string {
-  return `Ciao ${nome} ${cognome}`;
-}
-console.log(saluta4("Mario"));
-saluta4("Mario", "Rossi");
+// console.log(gatto4.nome); // NON da errore perche nome3 NON è privato
+// console.log(animale4.nome); // NON da errore perche nome2 NON è privato
 
-// overloading
-function somma2(a: number, b: number): number;
-function somma2(a: string, b: string): string;
-function somma2(a: any, b: any): any {
-  return a + b;
-}
-console.log(somma2(1, 2));
-console.log(somma2("1", "2"));
+class Animale {
+  protected nome: string;
 
-//This nelle funzioni
-class Counter {
-  count: number = 0;
-  increment(this: Counter) {
-    this.count++; // sarebbe come un count=count+1
-    //console.log(this.count);
+  constructor(nome: string) {
+    this.nome = nome;
   }
 }
-let counter = new Counter();
-console.log(counter.count); // 0
-counter.increment(); // 1
-console.log(counter.count); //
-
-// assegna una funzione ad una variabile
-let miaFunzione: (a: number, b: string) => boolean;
-
-miaFunzione = (numero, stringa) => {
-  return numero > 5 && stringa.startsWith("c");
-};
-miaFunzione(10, "ciaolll");
-console.log(miaFunzione(10, "ciao"));
-
-//parametro rest
-function somma3(capo: string, ...numeri: string[]): string {
-  return capo + numeri.join(", ");
+class Gatto extends Animale {
+  constructor() {
+    super("Gatto"); //prende il costruttore della classe padre
+  }
+  getNome() {
+    // getter per accedere al nome del gatto
+    return "il gatto si chiama " + this.nome; // getter per accedere al nome del gatto
+  }
 }
-let somma99 = somma3("ciao", "pippo", "pluto", "topolino", "paperino");
-console.log(somma99);
+let animale = new Animale("Cane");
+let gatto = new Gatto();
+console.log(animale.nome); // da errore perche il metodo getNome fa riferimento ad una propr PROTECTED della classe madre
+console.log(gatto.getNome()); // NON da errore perche il metodo getNome fa riferimento ad una propr PROTECTED della classe madre
